@@ -36,10 +36,12 @@ namespace mARC
 
         public string session_name;
 
-        public int session_id;
+        public string session_id;
         public string toReceive;
 
         public static int current;
+
+        public KMString kmstring;
 
         public ServerResponse()
         {
@@ -49,7 +51,8 @@ namespace mARC
             this._names = new ArrayList();
             this._types = new ArrayList();
             this._sizes = new ArrayList();
-            this.session_id = -1;
+            this.session_id = "-1";
+            this.kmstring = new KMString();
         }
 
         public ServerResponse(string ret)
@@ -230,11 +233,11 @@ namespace mARC
 
 
             int len = toReceive.Length;
-            session_name = GetWord(current, toReceive); //session name
+            //session_name = GetWord(current, toReceive); //session name
 
            // session = GetWord(current, toReceive); //session id sous forme string
 
-           // session_id = int.Parse(session);
+            session_id = GetWord(current, toReceive);
 
             erreur = GetWord(current, toReceive); //erreur
             if (erreur.Equals("0"))
@@ -342,13 +345,13 @@ namespace mARC
                     {
                         //tmp = mARC_Connector.KMString.FromString( idx, toReceive );
 
-                        val = KMString.FromGPBinary(idx, toReceive);
+                        val = kmstring.FromGPBinary(idx, toReceive);
 
                         if (val != null)
                         {
                             tmp = val;
                         }
-                        current = KMString.idxS;
+                        current = kmstring.idxS;
 
                         idx = current;
                     }
@@ -588,7 +591,7 @@ namespace mARC
             }
 
             string[] strArray2 = strArray[0].Split(new char[] { ' ' });
-            this.session_id = int.Parse(strArray2[0]);
+            this.session_id = strArray2[0];
             // Console.WriteLine("session id received from mARC server : " + this.session_id);
             num2 = int.Parse(strArray2[1]);
             this.mErrorMessage = "Ok";
@@ -644,7 +647,7 @@ namespace mARC
 
         public void Clear()
         {
-            this.session_id = -1;
+            this.session_id = "-1";
             this._names.Clear();
             this._columns.Clear();
             this._lines.Clear();

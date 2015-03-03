@@ -48,7 +48,7 @@ namespace mARC
             {
                 this._connector.OpenScript(null);
             }
-            this._connector.Push("Session.GetInstances();");
+            this._connector.Push("Session.GetInstances");
             this._connector.Push("endLine");
             this._connector.AddFunction();
             if (this._connector._DirectExecute)
@@ -56,13 +56,17 @@ namespace mARC
                 this._connector.DoIt();
             }
         }
-        public void Clear()
+        public void Clear(string option)
         {
             if (this._connector._DirectExecute)
             {
                 this._connector.OpenScript(null);
             }
-            this._connector.Push("Session.Clear();");
+            this._connector.Push("Session.Clear");
+            if ( !string.IsNullOrEmpty(option))
+            {
+                this._connector.Push(option);
+            }
             this._connector.Push("endLine");
             this._connector.AddFunction();
             if (this._connector._DirectExecute)

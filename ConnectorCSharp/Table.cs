@@ -61,9 +61,8 @@ namespace mARC
             {
                 this._connector.OpenScript(null);
             }
-            string s = "Table:" + tbl + ".Get";
+            string s = "Table:" + tbl + ".GetLines";
             this._connector.Push(s);
-            this._connector.Push("Lines");
             this._connector.Push("endLine");
             this._connector.AddFunction();
             if (this._connector._DirectExecute)
@@ -77,9 +76,7 @@ namespace mARC
             {
                 this._connector.OpenScript(null);
             }
-            string s = "Table:" + tbl + ".GetStructure";
-            this._connector.Push(s);
-            this._connector.Push("Lines");
+            this._connector.Push("Table:" + tbl + ".GetStructure");
             this._connector.Push("endLine");
             this._connector.AddFunction();
             if (this._connector._DirectExecute)
@@ -117,7 +114,7 @@ namespace mARC
                 this._connector.DoIt();
             }
         }
-        public void Create(string name, string location, string previsional_size, string type, string structure)
+        public void Create(string name, string owner, string location, string previsional_size, string type, string structure)
         {
             if (name != null)
             {
@@ -127,6 +124,7 @@ namespace mARC
                 }
                 this._connector.Push("Table.Create");
                 this._connector.Push(name);
+                this._connector.Push(owner);
                 this._connector.Push(location);
                 this._connector.Push(previsional_size);
                 this._connector.Push(type);

@@ -29,14 +29,17 @@ namespace mARC
             this._connector = _connector;
         }
 
-        public void ShutDown()
+        public void ShutDown(string option)
         {
             if (this._connector._DirectExecute)
             {
                 this._connector.OpenScript(null);
             }
             this._connector.Push("Server.ShutDown");
-            this._connector.Push("endLine");
+            if ( !string.IsNullOrEmpty(option) )
+            {
+                this._connector.Push(option);
+            }
             this._connector.Push("endLine");
             this._connector.AddFunction();
             if (this._connector._DirectExecute)

@@ -27,7 +27,7 @@ namespace mARC
     {
         private int idx1;
         private string str;
-        public static int idxS;
+        public  int idxS;
 
         public KMString()
         {
@@ -38,7 +38,7 @@ namespace mARC
             this.str = _kmstring;
         }
 
-        public static String FromGPBinary(int idx, String src)
+        public String FromGPBinary(int idx, String src)
         {
             bool ok;
             int taille, pos, i;

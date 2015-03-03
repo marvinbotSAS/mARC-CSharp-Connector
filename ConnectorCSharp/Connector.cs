@@ -228,7 +228,9 @@ namespace mARC
             this.Send();
             this.Receive();
             this.Analyse();
-
+            this.KMScriptSession = this._result.session_id;   // this._result.session_id.ToString();
+            this.KMId = this.KMScriptSession;
+            //
             String[] sss;
 
             challengeMessage = Received;
@@ -328,7 +330,7 @@ namespace mARC
 
             String[] sss;
 
-            this.KMScriptSession = this._result.session_name;   // this._result.session_id.ToString();
+            this.KMScriptSession = this._result.session_id;   // this._result.session_id.ToString();
             this.KMId = this.KMScriptSession;
             this.toSend = this.KMScriptSession + " Server.GetPort();";
             this.Send();
@@ -712,10 +714,6 @@ namespace mARC
         public void OpenScript(string session)
         {
             if (session == null)
-            {
-                session = this.KMId;
-            }
-            if (int.Parse(session) < 0)
             {
                 session = this.KMId;
             }
