@@ -752,7 +752,7 @@ namespace mARC
                         System.Windows.Forms.MessageBox.Show("Receive ERROR : la socket est déconnectée : code d'erreur : " + ex.ErrorCode);
                     }
                     string str = encoding.GetString(buffer);
-                    if (str.IndexOf('\0') != -1)
+                    if (str.IndexOf('\0') > 0 )
                     {
                         str = str.Substring(0, str.IndexOf('\0') - 1);
                     }

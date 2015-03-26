@@ -218,7 +218,7 @@ namespace mARC
             mErrorMessage = "";
             mScriptSize = 0;
 
-            String  session, erreur;
+            String  erreur;
             current = 0;
             byte[] b;
             try

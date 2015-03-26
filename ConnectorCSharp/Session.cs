@@ -273,7 +273,7 @@ namespace mARC
                 this._connector.DoIt();
             }
         }
-        public void ContextToDoc(string rowId, string boolSpectrum)
+        public void ContextToDoc()
         {
             if (this._connector._DirectExecute)
             {
@@ -293,7 +293,7 @@ namespace mARC
             {
                 this._connector.OpenScript(null);
             }
-            this._connector.Push("Session.DocToContext");
+			this._connector.Push("Session.StringToContext");
             this._connector.Push(signal);
             this._connector.Push(boolLearn);
             this._connector.Push("endLine");
@@ -303,7 +303,7 @@ namespace mARC
                 this._connector.DoIt();
             }
         }
-        public void ContextToContext(string rowId, string boolSpectrum)
+        public void ContextToContext()
         {
             if (this._connector._DirectExecute)
             {

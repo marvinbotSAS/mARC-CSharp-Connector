@@ -159,14 +159,13 @@ namespace mARC
                 this._connector.DoIt();
             }
         }
-        public void Union(int range)
+        public void Union()
         {
             if (this._connector._DirectExecute)
             {
                 this._connector.OpenScript(null);
             }
             this._connector.Push("Results.Union");
-            this._connector.Push(range.ToString());
             this._connector.Push("endLine");
             this._connector.AddFunction();
             if (this._connector._DirectExecute)
@@ -283,7 +282,9 @@ namespace mARC
                 this._connector.OpenScript(null);
             }
             this._connector.Push("Results.Normalize");
-            this._connector.Push(behaviour);
+			if (!string.IsNullOrEmpty (behaviour)) {
+				this._connector.Push (behaviour);
+			}
             this._connector.Push("endLine");
             this._connector.AddFunction();
             if (this._connector._DirectExecute)
